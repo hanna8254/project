@@ -21,4 +21,11 @@ TextStyle subTitle =
 TextStyle textButton =
     TextStyle(color: kWhiteColor, fontSize: 14, fontWeight: FontWeight.w700); // textbutton 에 있는 글자(로그인, 인증받기)
 
+TextStyle grade =
+TextStyle(color: kPrimaryColor, fontSize: 17, fontWeight: FontWeight.bold); // 인기 스터디에서 순위를 나타내는 글자 스타일
+
+TextStyle studyname =
+TextStyle(color: kGreyColor, fontSize: 17, fontWeight: FontWeight.bold); // 인기 스터디에서 스터디 이름을 나타내는 글자 스타일
+
+
 

@@ -42,7 +42,8 @@ class _HomeBottomState extends State<HomeBottom> {
         automaticallyImplyLeading: false,
         centerTitle: false,                    // 타이틀 가운데 설정
         backgroundColor: Colors.white,
-        toolbarHeight: 87,           // 앱바 크기
+        toolbarHeight: 87, // 앱바 크기
+        elevation: 1,
 
         leading: SizedBox(              // 메인 앱바에서 모공 이미지(왼쪽)
           child: Image.asset("assets/images/mogong_main.png"),
