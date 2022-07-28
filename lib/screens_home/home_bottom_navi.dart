@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mogong/screens_home/purchase_screen.dart';
+import 'package:mogong/screens_home/search_book.dart';
 import 'package:mogong/screens_home/study_screen.dart';
+import '../components/info.dart';
 import '../theme.dart';
 import 'community_screen.dart';
 import 'home_screen.dart';
@@ -26,6 +28,15 @@ class _HomeBottomState extends State<HomeBottom> {
     StudyScreen(),
     CommunityScreen(),
 
+  ];
+
+  int index = 0;
+  MyAccount account = MyAccount("김형진", "rlagudwls3469@gmail.com", "qwe123");
+  final screens = [
+    const Center(child : Text("home",style: TextStyle(fontSize: 72),)),
+    const Center(child : Text("buy", style: TextStyle(fontSize: 72),)),
+    const StudyScreen(),
+    const Center(child : Text("commu", style: TextStyle(fontSize: 72),)),
   ];
 
   void _onItemTapped(int index) {
@@ -57,25 +68,19 @@ class _HomeBottomState extends State<HomeBottom> {
           height: 35,
 
 
-          child: TextFormField(
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.white,
-                size: 23,
-              ),
-
-              hintText: "구매할 책을 검색하세요",
-              contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              hintStyle: textButton,
-              isDense: true,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
-              filled: true,
-              fillColor: kPrimaryColor,   // 보라색
+          child: MaterialButton(
+            padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            minWidth: MediaQuery.of(context).size.width,
+            color: kPrimaryColor,
+            onPressed: () {                                // 다음 버튼 누르면 작동(임시 비밀번호 발급)
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context)=> SearchBook()));
+            },
+            child: Text("구매할 책을 검색하세요",
+              textAlign: TextAlign.left,
+              style: textButton, // theme.dart 파일
             ),
+
           ),
         ),
 
@@ -102,52 +107,94 @@ class _HomeBottomState extends State<HomeBottom> {
         child: _widgetOptions.elementAt(_currentIndex),
       ),
 
-      
-      
-      
-      endDrawer: Drawer(                   // drawer 화면(일단 기본 구성) -> 수정하기
-        child: ListView( // 리스트뷰에는 패딩 값 0
 
-          padding: EdgeInsets.zero,
-          children: [
-            const UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: const Color(0xff764abc)),
-              accountName: Text( // 계정 이름
-                "mogong 연습",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              accountEmail: Text( // 이메일 계정
-                "mogong.practice@gmail.com",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              currentAccountPicture: FlutterLogo(),
-            ),
 
-            ListTile(
-              leading: Icon( // leading은 왼쪽으로 아이콘
-                Icons.home,
-              ),
-              title: const Text("Page 1"),
-              onTap: () {
-                Navigator.pop(context); // 이전 화면으로
-              },
+
+      endDrawer: Drawer(
+          child: Container(
+            color: Colors.white,
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 260,
+                  child: DrawerHeader(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: Divider.createBorderSide(context,
+                                color: Colors.white))),
+                    child: Column(children: [
+                      const SizedBox(
+                        height: 50,
+                        width: 20,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20, bottom: 20),
+                        child: Image.asset(
+                          'assets/account_default.png',
+                          width: 60,
+                          height: 60,
+                        ),
+                      ),
+                      Text(
+                        account.name,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 15),
+                        child: Text(account.email,
+                            style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'sans',
+                                fontWeight: FontWeight.w100)),
+                      )
+                    ]),
+                  ),
+                ),
+                Container(
+                  // color : Color.fromARGB(255, 246, 238, 238),
+                  color: Color.fromARGB(255, 234, 234, 234),
+                  child: SizedBox(
+                    height: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                            splashColor: Colors.blue,
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/heart.png',
+                                    width: 24,
+                                    height: 24,
+                                  ),
+                                  const Text(
+                                    "찜목록",
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: () => {print("찜 목록 클릭")}),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/zzim.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                            const Text("공감", style: TextStyle(fontSize: 10)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            ListTile(
-              leading: Icon(
-                Icons.train,
-              ),
-              title: const Text("Page 2"),
-              onTap: () {
-                Navigator.pop(context); // 이전 화면으로
-              },
-            ),
-          ],
-        ),
-      ),
+          )),
 
 
 

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import 'account_email.dart';
@@ -24,7 +25,8 @@ class _SearchEmailState extends State<SearchEmail> {
 
 
     return Scaffold(
-      backgroundColor: Colors.white,       // 배경화면 색상
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,       // 배경화면 색상
       appBar: AppBar(                                  // 뒤로 가기 버튼 생성을 위한 앱바
         backgroundColor: Colors.white,
         elevation: 0,
@@ -38,15 +40,15 @@ class _SearchEmailState extends State<SearchEmail> {
       ),
 
       body: Padding(
-        padding: kDefaultPadding,   // 앱바와 타이틀 간 거리
+        padding: EdgeInsets.fromLTRB(20, 0, 0, 50),   // 앱바와 타이틀 간 거리
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "이메일 찾기", style: titleText),
 
-            SizedBox(height: 10),
             SearchEmailForm(),       // 이메일 찾기 관련 구조(바디)
           ],
         ),
@@ -84,12 +86,16 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
         keyboardType: TextInputType.phone,      // 입력 타입: 전화번호
         onSaved: (value) => _phoneNumber = value,
         textInputAction: TextInputAction.next,     // 다음 입력
+
         decoration: InputDecoration(             // 꾸미기
           contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),    // 입력칸 여백
           hintText: "01012345678",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
           ),
+
+          hintStyle: fieldtext,
         )
     );
 
@@ -106,11 +112,14 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
 
         textInputAction: TextInputAction.done,     // 입력 완료
         decoration: InputDecoration(             // 꾸미기
-          contentPadding: EdgeInsets.fromLTRB(25, 15, 25, 15),
+          contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),
           hintText: "인증번호 4자리",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
           ),
+
+          hintStyle: fieldtext,
         )
     );
 
@@ -122,7 +131,7 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
       color: kPrimaryColor,
       borderRadius: BorderRadius.circular(30),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),  // 여백(로그인 버튼)
+        padding: EdgeInsets.fromLTRB(10, 15, 20, 15),  // 여백(로그인 버튼)
         minWidth: MediaQuery.of(context).size.width,   // 다음 버튼 크기
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
@@ -152,7 +161,7 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
         },
 
         child: Text(buttonText, textAlign: TextAlign.center,
-          style: textButton,    // theme.dart 파일
+          style: smalltextButton,    // theme.dart 파일
         ),
       ),
     );
@@ -161,19 +170,22 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
       key: _formKey,
 
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),   // body 부분 위치 조절
+        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),   // body 부분 위치 조절
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30),
-            Text("휴대폰 번호", style: subTitle),
+            SizedBox(height: 20),
+            Text("휴대폰 번호", style: subTitle, textAlign: TextAlign.left),
+            SizedBox(height: 4),
 
             Row(                                               // 휴대폰 필드와 인증받기 버튼 나란히
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+
               children: <Widget>[
                 Container(
-                  width: 260,
-                  child: phoneNumberField,
+                  width: 270,
+                  child: phoneNumberField,        // 휴대번호 필드 길이
                 ),
 
                 SizedBox(width: 10),
@@ -188,8 +200,15 @@ class _SearchEmailFormState extends State<SearchEmailForm> {
               ],
             ),
 
-            SizedBox(height: 20),
-            Text("인증번호", style: subTitle),
+            SizedBox(height: 15),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text("인증번호", style: subTitle, textAlign: TextAlign.left),
+              ],
+            ),
+            SizedBox(height: 4),
             authNumberField,
             SizedBox(height: 30),
 

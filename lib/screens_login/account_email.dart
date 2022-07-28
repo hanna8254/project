@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mogong/screens_login/search_email.dart';
 import '../theme.dart';
@@ -30,16 +31,16 @@ class AccountEmail extends StatelessWidget {
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "입력하신 번호로", style: titleText),
             Text(
                 "찾은 계정 정보입니다.", style: titleText),
-            SizedBox(height: 25),
+            SizedBox(height: 18),
             Text(
-                "개인정보 보호를 위하여 뒷자리는 ***로 표시됩니다.", style: subTitle
+                "  개인정보 보호를 위하여 뒷자리는 ***로 표시됩니다.", style: destext
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             AccountEmailForm(),       // 이메일 계정 정보 구조
           ],
         ),
@@ -84,15 +85,16 @@ class _AccountEmailFormState extends State<AccountEmailForm> {
       key: _formKey,
 
       child: Column(         // 열
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           // 이메일 계정 정보 보여주기
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Text(
               "이메일", style: subTitle),
           Text(
-              "abc***@email.com", style: subTitle),
-          SizedBox(height: 25),
+              "abc***@email.com", style: emailtext),
+          SizedBox(height: 30),
 
           // 로그인으로 되돌아가기 발급 버튼
           returnButton,

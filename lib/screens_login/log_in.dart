@@ -43,11 +43,12 @@ class _LogInScreenState extends State<LogInScreen> {           // 스플래시 �
 
       textInputAction: TextInputAction.next,    // 다음 입력
       decoration: InputDecoration(             // 꾸미기
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),   // 필드 안 글자 여백
-        hintText: "abc@email.com",   // 이메일field 글자(작성하기 전에 나타나 있는 문자)
+        contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),   // 필드 안 글자 여백
+        hintText: "abc@email.com",  hintStyle: fieldtext, // 이메일field 글자(작성하기 전에 나타나 있는 문자)
 
         border: OutlineInputBorder(                    // 경계면(둥글게)
           borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: kFieldColor),
         ),
       )
     );
@@ -70,15 +71,15 @@ class _LogInScreenState extends State<LogInScreen> {           // 스플래시 �
 
 
         decoration: InputDecoration(             // 꾸미기
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "8자 이상의 비밀번호",
+          contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),
+          hintText: "8자 이상의 비밀번호", hintStyle: fieldtext,
+
           enabledBorder: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: kGreyColor),
-            gapPadding: 10,
+            borderSide: BorderSide(color: kFieldColor),
+
           ),
         )
-
 
     );
 
@@ -102,36 +103,41 @@ class _LogInScreenState extends State<LogInScreen> {           // 스플래시 �
     );
     
    return Scaffold(
-     backgroundColor: Colors.white,       // 배경화면 색상
+     backgroundColor: Colors.white,
+     resizeToAvoidBottomInset: false,       // 배경화면 색상
      body: Center(
        child: SingleChildScrollView(
          child: Container(             // 로고와 이메일 필드를 보관할 컨테이너
            color: Colors.white,
            child: Padding(
-             padding: const EdgeInsets.all(36.0),    // 전체적인 여백(이메일, 비번, 로그인 버트)
+             padding: const EdgeInsets.fromLTRB(17, 140, 17, 20),    // 전체적인 여백(이메일, 비번, 로그인 버트)
              child: Form(
                key: _formKey,          // 키 값
                child: Column(         // 열(이메일 필드, 패스워드 필드)
-                 crossAxisAlignment: CrossAxisAlignment.center,
+                 crossAxisAlignment: CrossAxisAlignment.stretch,
+
                  children: <Widget>[
 
                    SizedBox(            // image 출력(모공 아이콘)
-                       height: 80,
+                       height: 60,
+                       width: 80,
                        child: Image.asset(
                          "assets/images/mogongicon.png",
                          fit: BoxFit.contain,
                        ),
                    ),
 
-                   SizedBox(height: 45),    // 이미지와 이메일, 비번 사이의 거리
+                   SizedBox(height: 50),    // 이미지와 이메일, 비번 사이의 거리
 
-                   Text("이메일", style: subTitle),   // field 위에 이름(이메일)
+                   Text("  이메일", style: subTitle, textAlign: TextAlign.left),   // field 위에 이름(이메일)
+                   SizedBox(height: 4),
                    emailField,
-                   SizedBox(height: 25),
+                   SizedBox(height: 15),
 
-                   Text("비밀번호", style: subTitle),  // field 위에 이름(비밀번호)
+                   Text("  비밀번호", style: subTitle, textAlign: TextAlign.left),  // field 위에 이름(비밀번호)
+                   SizedBox(height: 4),
                    passwordField,
-                   SizedBox(height: 45),
+                   SizedBox(height: 30),
 
                    loginButton,
                    SizedBox(height: 15),
@@ -139,12 +145,13 @@ class _LogInScreenState extends State<LogInScreen> {           // 스플래시 �
                    // 로그인 버튼 밑에 이메일 찾기, 비번 찾기
                    NoAccount(),
 
-                   SizedBox(height: 35),
+                   SizedBox(height: 95),
                    Row(
                      mainAxisAlignment: MainAxisAlignment.center,
 
                      children: <Widget>[
-                       Text("계정이 없으신가요?"),
+                       Text("계정이 없으신가요?", style: subTitle),
+                       SizedBox(width: 5),
                        GestureDetector(
                          onTap: () {                //가입하기를 클릭하면
                            Navigator.push(
@@ -158,7 +165,7 @@ class _LogInScreenState extends State<LogInScreen> {           // 스플래시 �
                          style: TextStyle(             // 가입하기 글씨 디자인
                             color: kPrimaryColor,
                              fontWeight: FontWeight.bold,
-                             fontSize: 15),
+                             fontSize: 13),
                        ),
                        )
                      ],

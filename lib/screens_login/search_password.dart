@@ -14,6 +14,7 @@ class SearchPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(                                  // 뒤로 가기 버튼 생성을 위한 앱바
         backgroundColor: Colors.white,
@@ -28,18 +29,18 @@ class SearchPassword extends StatelessWidget {
       ),
 
       body: Padding(
-        padding: kDefaultPadding,   // 앱바와 타이틀 간 거리
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 50),    // 앱바와 타이틀 간 거리
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "비밀번호 찾기", style: titleText),
-            SizedBox(height: 25),
+            SizedBox(height: 23),
             Text(
-              "가입 시 사용한 이메일 주소를 입력해 주세요.", style: subTitle
+              "가입 시 사용한 이메일 주소를 입력해 주세요.", style: destext
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 4),
             SearchPassForm(),       // 비밀번호 관련 구조
           ],
         ),
@@ -69,7 +70,7 @@ class _SearchPassFormState extends State<SearchPassForm> {
       color: kPrimaryColor,
       borderRadius: BorderRadius.circular(30),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),  // 여백(로그인 버튼)
+        padding: EdgeInsets.fromLTRB(10, 15, 20, 15),  // 여백(로그인 버튼)
         minWidth: MediaQuery.of(context).size.width,   // 다음 버튼 크기
         onPressed: () {                                // 다음 버튼 누르면 작동(임시 비밀번호 발급)
           Navigator.push(context, MaterialPageRoute(
@@ -101,7 +102,10 @@ class _SearchPassFormState extends State<SearchPassForm> {
 
             border: OutlineInputBorder(                   // 경계면(둥글게)
               borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: kFieldColor),
             ),
+
+            hintStyle: fieldtext,
            )
           ),
 

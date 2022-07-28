@@ -16,6 +16,8 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
   @override
   Widget build(BuildContext context) {
 
+    
+
     // 교재 이름 list
     var bookNameList = [
       "사고와 표현",
@@ -116,6 +118,8 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     ];
 
 
+
+
     // 정렬기준을 나타내기 위해서 appbar, appbar 사이 여백 줄이기, 글자 오른쪽, 이모티콘 넣기, 누르면, 정렬방법 선택가능
     return Scaffold(
       appBar:AppBar(
@@ -128,9 +132,16 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
       ),
 
       body: ListView.builder(
+
+
+
           itemCount: imgList.length,  // 이미지 list 길이만큼(9)
           itemBuilder: (context, index)   // 이미지 인덱스 이용해서 빌드
+
           {
+
+
+            
             return GestureDetector(          // Tap 하면 나오는 장면
               onTap: () {
                 showDialogFunc(context,
@@ -148,19 +159,37 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
                       child: Image.asset(imgList[index], width: 500, fit: BoxFit.fill),  // 이미지 크기 조절
                     ),
 
+
                     Padding(
+
                       padding: const EdgeInsets.fromLTRB(5, 25, 0, 30),  // 이미지와 글자 사이의 거리
                       child: Column(    // 열
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
 
-                          Text(                                    // bookname(교재 이름)
-                            bookNameList[index],
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w700,
-                            ),
+
+                          Row(
+
+                            children: [
+                              Text(                                    // bookname(교재 이름)
+                                bookNameList[index],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+
+                              IconButton(
+
+                                  icon: Icon(Icons.favorite_border),
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    setState(() {
+                                    });
+                                  }
+                              ),
+                            ],
                           ),
 
                           SizedBox(height: 8),

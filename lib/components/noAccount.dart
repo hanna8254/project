@@ -19,16 +19,19 @@ class NoAccount extends StatelessWidget {
           onTap: () => Navigator.popAndPushNamed(
               context, SearchEmail.routeName),
           child: Text(
-              "이메일 찾기   ", style: subTitle),
+              "이메일 찾기", style: subTitle),
         ),
+        SizedBox(width: 11),
 
-        Text("|"),
+        Text("|", style: subTitle),
+
+        SizedBox(width: 11),
 
         GestureDetector(                                    // 메인 로그인에서 비밀번호 찾기를 누르면 비밀번호 찾기 페이지로 이동
           onTap: () => Navigator.popAndPushNamed(
               context, SearchPassword.routeName),
           child: Text(
-              "    비밀번호 찾기", style: subTitle),
+              "비밀번호 찾기", style: subTitle),
         ),
 
       ],

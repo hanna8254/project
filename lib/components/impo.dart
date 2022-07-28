@@ -102,6 +102,19 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
       "15000원"
     ];
 
+    var People = [
+
+      "2/6",
+      "3/4",
+      "2/8",
+      "1/4",
+      "2/6",
+      "2/6",
+      "3/4",
+      "2/8",
+      "1/4",
+    ];
+
 
     // 정렬기준을 나타내기 위해서 appbar, appbar 사이 여백 줄이기, 글자 오른쪽, 이모티콘 넣기, 누르면, 정렬방법 선택가능
     return Scaffold(
@@ -194,13 +207,29 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
 
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.6,
-                                child: Text(
-                                  Price[index],                               // 가격
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: kPrimaryColor,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      Price[index],                               // 가격
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 160),
+
+                                    Text(
+                                      People[index],                              // 인원 수
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: kGreyColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+
+                                  ],
                                 ),
                               ),
 

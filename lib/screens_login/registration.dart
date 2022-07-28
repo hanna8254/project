@@ -23,6 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,       // 배경화면 색상
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(                                  // 뒤로 가기 버튼 생성을 위한 앱바
         backgroundColor: Colors.white,
         elevation: 0,
@@ -36,15 +37,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
 
       body: Padding(
-        padding: kDefaultPadding,   // 앱바와 타이틀 간 거리
+        padding: EdgeInsets.fromLTRB(20, 0, 0, 50),   // 앱바와 타이틀 간 거리
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "회원가입", style: titleText),
 
-            SizedBox(height: 10),
             RegisterForm(),       // 비밀번호 관련 구조(바디)
           ],
         ),
@@ -88,7 +88,10 @@ class _RegisterFormState extends State<RegisterForm> {
           hintText: "01012345678",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
           ),
+
+          hintStyle: fieldtext,
         )
     );
 
@@ -105,11 +108,14 @@ class _RegisterFormState extends State<RegisterForm> {
 
         textInputAction: TextInputAction.done,     // 입력 완료
         decoration: InputDecoration(             // 꾸미기
-          contentPadding: EdgeInsets.fromLTRB(25, 15, 25, 15),
+          contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),
           hintText: "인증번호 4자리",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
           ),
+
+          hintStyle: fieldtext,
         )
     );
 
@@ -121,7 +127,7 @@ class _RegisterFormState extends State<RegisterForm> {
       color: kPrimaryColor,
       borderRadius: BorderRadius.circular(30),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),  // 여백(로그인 버튼)
+        padding: EdgeInsets.fromLTRB(10, 15, 20, 15),  // 여백(로그인 버튼)
         minWidth: MediaQuery.of(context).size.width,   // 다음 버튼 크기
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
@@ -151,7 +157,7 @@ class _RegisterFormState extends State<RegisterForm> {
         },
 
         child: Text(buttonText, textAlign: TextAlign.center,
-          style: textButton,    // theme.dart 파일
+          style: smalltextButton,    // theme.dart 파일
         ),
       ),
     );
@@ -160,18 +166,21 @@ class _RegisterFormState extends State<RegisterForm> {
         key: _formKey,
 
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),   // body 부분 위치 조절
+        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),   // body 부분 위치 조절
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30),
-            Text("휴대폰 번호", style: subTitle),
+            SizedBox(height: 20),
+            Text("휴대폰 번호", style: subTitle, textAlign: TextAlign.left),
+            SizedBox(height: 4),
 
             Row(                                               // 휴대폰 필드와 인증받기 버튼 나란히
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+
               children: <Widget>[
                 Container(
-                  width: 260,
+                  width: 270,
                   child: phoneNumberField,
                 ),
 

@@ -32,16 +32,16 @@ class TempPassword extends StatelessWidget {
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "임시 비밀번호가", style: titleText),
             Text(
                 "발급되었습니다.", style: titleText),
-            SizedBox(height: 25),
+            SizedBox(height: 18),
             Text(
-                "로그인 후 비밀번호를 변경해주세요.", style: subTitle
+                "로그인 후 비밀번호를 변경해 주세요.", style: destext
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             TempPassForm(),       // 임시 비밀번호 관련 구조
           ],
         ),
@@ -86,15 +86,16 @@ class _TempPassFormState extends State<TempPassForm> {
       key: _formKey,
 
       child: Column(         // 열
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           // 임시 비밀번호 보여주기
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Text(
               "임시 비밀번호", style: subTitle),
           Text(
-              "afuegs15682", style: subTitle),
-          SizedBox(height: 25),
+              "afuegs15682", style: emailtext),
+          SizedBox(height: 30),
 
           // 로그인으로 되돌아가기 발급 버튼
           returnButton,

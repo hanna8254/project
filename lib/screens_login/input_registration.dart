@@ -24,6 +24,8 @@ class _InputRegistrationState extends State<InputRegistration> {
 
     return Scaffold(
       backgroundColor: Colors.white,       // 배경화면 색상
+      resizeToAvoidBottomInset: false,
+
       appBar: AppBar(                                  // 뒤로 가기 버튼 생성을 위한 앱바
         backgroundColor: Colors.white,
         elevation: 0,
@@ -37,17 +39,17 @@ class _InputRegistrationState extends State<InputRegistration> {
       ),
 
       body: Padding(
-        padding: kDefaultPadding,   // 앱바와 타이틀 간 거리
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 50),   // 앱바와 타이틀 간 거리
         child: Column (
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 30),
             Text(
                 "이메일과 비밀번호를", style: titleText),
             Text(
                 "입력해주세요.", style: titleText
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 18),
             InputForm(),       // 회원가입 등록 관련 구조(바디)
           ],
         ),
@@ -84,11 +86,14 @@ class _InputFormState extends State<InputForm> {
         onSaved: (value) => _email = value,
         textInputAction: TextInputAction.next,     // 다음 입력
         decoration: InputDecoration(             // 꾸미기
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),    // 입력칸 여백
+          contentPadding: EdgeInsets.fromLTRB(15, 15, 10, 15),    // 입력칸 여백
           hintText: "abc@email.com",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
           ),
+
+          hintStyle: fieldtext,
         )
     );
 
@@ -109,8 +114,10 @@ class _InputFormState extends State<InputForm> {
           hintText: "8자 이상의 비밀번호",
           border: OutlineInputBorder(                   // 경계면(둥글게)
             borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: kFieldColor),
             gapPadding: 10,       // 이거는 나중에 확인해보기(다시)
           ),
+          hintStyle: fieldtext,
         )
     );
 
@@ -122,7 +129,7 @@ class _InputFormState extends State<InputForm> {
       color: kPrimaryColor,
       borderRadius: BorderRadius.circular(30),
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),  // 여백(로그인 버튼)
+        padding: EdgeInsets.fromLTRB(10, 15, 20, 15),  // 여백(로그인 버튼)
         minWidth: MediaQuery.of(context).size.width,   // 다음 버튼 크기
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
@@ -140,17 +147,19 @@ class _InputFormState extends State<InputForm> {
       key: _formKey,
 
       child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),   // body 부분 위치 조절
+        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),   // body 부분 위치 조절
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30),
 
-            Text("이메일", style: subTitle),
+            Text("이메일", style: subTitle, textAlign: TextAlign.left),
+            SizedBox(height: 4),
             emailField,
-            SizedBox(height: 20),
+            SizedBox(height: 15),
 
 
-            Text("비밀번호", style: subTitle),
+            Text("비밀번호", style: subTitle, textAlign: TextAlign.left),
+            SizedBox(height: 4),
             passwordField,
             SizedBox(height: 30),
 
